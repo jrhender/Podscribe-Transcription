@@ -12,7 +12,7 @@ import (
         speechpb "google.golang.org/genproto/googleapis/cloud/speech/v1p1beta1"
 )
 
-func main() {
+func Recognize() {
         ctx := context.Background()
 
         // Creates a client.
