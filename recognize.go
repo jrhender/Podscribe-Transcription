@@ -22,7 +22,7 @@ func main() {
         }
 
         // Sets the name of the audio file to transcribe.
-        filename := "/path/to/audio.raw"
+        filename := "EPISODE61_CUT.flac"
 
         // Reads the audio file into memory.
         data, err := ioutil.ReadFile(filename)
@@ -33,8 +33,7 @@ func main() {
         // Detects speech in the audio file.
         resp, err := client.Recognize(ctx, &speechpb.RecognizeRequest{
                 Config: &speechpb.RecognitionConfig{
-                        Encoding:        speechpb.RecognitionConfig_LINEAR16,
-                        SampleRateHertz: 16000,
+                        Encoding:        speechpb.RecognitionConfig_FLAC,
                         LanguageCode:    "en-US",
                 },
                 Audio: &speechpb.RecognitionAudio{
