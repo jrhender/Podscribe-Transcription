@@ -8,8 +8,8 @@ import (
         "io/ioutil"
         "log"
 
-        speech "cloud.google.com/go/speech/apiv1"
-        speechpb "google.golang.org/genproto/googleapis/cloud/speech/v1"
+        speech "cloud.google.com/go/speech/apiv1p1beta1"
+        speechpb "google.golang.org/genproto/googleapis/cloud/speech/v1p1beta1"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
         }
 
         // Sets the name of the audio file to transcribe.
-        filename := "EPISODE61_CUT.flac"
+        filename := "EPISODE61_CUT.mp3"
 
         // Reads the audio file into memory.
         data, err := ioutil.ReadFile(filename)
@@ -33,8 +33,9 @@ func main() {
         // Detects speech in the audio file.
         resp, err := client.Recognize(ctx, &speechpb.RecognizeRequest{
                 Config: &speechpb.RecognitionConfig{
-                        Encoding:        speechpb.RecognitionConfig_FLAC,
+                        Encoding:        speechpb.RecognitionConfig_MP3,
                         LanguageCode:    "en-US",
+                        SampleRateHertz: 48000,
                 },
                 Audio: &speechpb.RecognitionAudio{
                         AudioSource: &speechpb.RecognitionAudio_Content{Content: data},
