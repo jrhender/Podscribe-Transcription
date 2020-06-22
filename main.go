@@ -8,12 +8,9 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	log.Print("helloworld: received a request")
-	target := os.Getenv("TARGET")
-	if target == "" {
-		target = "World"
-	}
-	fmt.Fprintf(w, "Hello %s!\n", target)
+	log.Print("transcription: received a request")
+	result := Recognize()
+	fmt.Fprintf(w, "%s\n", result)
 }
 
 func main() {
