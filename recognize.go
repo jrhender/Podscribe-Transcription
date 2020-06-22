@@ -5,28 +5,18 @@ package main
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
 
 	speech "cloud.google.com/go/speech/apiv1p1beta1"
 	speechpb "google.golang.org/genproto/googleapis/cloud/speech/v1p1beta1"
 )
 
-func Recognize() (string, error) {
+func Recognize(fileData []byte) (string, error) {
 	ctx := context.Background()
 
 	// Creates a client.
 	client, err := speech.NewClient(ctx)
 	if err != nil {
 		return "", fmt.Errorf("Failed to create client: %v", err)
-	}
-
-	// Sets the name of the audio file to transcribe.
-	filename := "EPISODE61_CUT.mp3"
-
-	// Reads the audio file into memory.
-	data, err := ioutil.ReadFile(filename)
-	if err != nil {
-		return "", fmt.Errorf("Failed to read file: %v", err)
 	}
 
 	// Detects speech in the audio file.
@@ -37,7 +27,7 @@ func Recognize() (string, error) {
 			SampleRateHertz: 48000,
 		},
 		Audio: &speechpb.RecognitionAudio{
-			AudioSource: &speechpb.RecognitionAudio_Content{Content: data},
+			AudioSource: &speechpb.RecognitionAudio_Content{Content: fileData},
 		},
 	})
 	if err != nil {
