@@ -10,3 +10,5 @@ Steps to deploy:
 2. Get Google Cloud project ID: `gcloud config get-value project`
 3. Build container image: `gcloud builds submit --tag gcr.io/PROJECT-ID/transcription`
 4. Deploy: `gcloud run deploy --image gcr.io/PROJECT-ID/transcription --platform managed`
+
+Can be called in dev by `curl http://localhost:8080 -F "file=@EPISODE61_CUT.mp3" -v`
