@@ -9,7 +9,11 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	log.Print("transcription: received a request")
-	result := Recognize()
+	result, err := Recognize()
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
 	fmt.Fprintf(w, "%s\n", result)
 }
 
