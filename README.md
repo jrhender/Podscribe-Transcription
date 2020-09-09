@@ -12,3 +12,7 @@ Steps to deploy:
 4. Deploy: `gcloud run deploy --image gcr.io/PROJECT-ID/transcription --platform managed`
 
 Can be called in dev by `curl http://localhost:8080 -F "file=@EPISODE61_CUT.mp3" -v`
+
+Instructions on how to use Google Speech-to-Text .Net library:
+https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries?hl=sl
+https://googleapis.github.io/google-cloud-dotnet/docs/Google.Cloud.Speech.V1/index.html 
